@@ -3,7 +3,7 @@ jobs:
   build:
     working_directory: /dockerapp
     docker:
-      - image: docker:17.05.0-ce-git
+      - image: docker:18.09.2-ce-git
     steps:
       - checkout
       - setup_remote_docker
@@ -21,6 +21,7 @@ jobs:
           name: Deployment
           branch: [circle_ci_publish, master]
           command: |
+            docker version
             docker login -e $DOCKER_HUB_EMAIL -u $DOCKER_HUB_USER_ID -p $DOCKER_HUB_PWD
             docker tag dockerapp_dockerapp $DOCKER_HUB_USER_ID/dockerapp:$CIRCLE_SHA1
             docker tag dockerapp_dockerapp $DOCKER_HUB_USER_ID/dockerapp:latest
