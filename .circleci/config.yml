@@ -17,12 +17,6 @@ jobs:
           command: |
             docker-compose up -d
             docker-compose run dockerapp python test.py
-      
-      - run:
-          name: Get docker version
-          command: |
-            docker --version
-
       - run:
           name: Deployment
           branch: [circle_ci_publish, master]
